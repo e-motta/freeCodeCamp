@@ -37,5 +37,3 @@ def add_time(start, duration, day_of_week=''):
     if total_days > 1: new_time += f' ({total_days} days later)'
 
     return new_time
-
-print(add_time("11:55 AM", "3:12"))
