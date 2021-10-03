@@ -10,6 +10,8 @@ class Category:
     def withdraw(self, amount, description=''):
         if self.check_funds(amount):
             self.ledger.append({"amount": -amount, "description": description})
+            return True
+        return False
 
     def get_balance(self):
         balance = 0
@@ -22,24 +24,23 @@ class Category:
             self.withdraw(amount, f"Transfer to {other_category.category}")
             other_category.deposit(amount, f"Transfer from {self.category}")
             return True
-        else:
-            return False
+        return False
 
     def check_funds(self, amount):
         if amount > self.get_balance(): return False
-        else: return True
+        return True
 
     def __str__(self):
-        pass
+        title = self.category.center(30, "*") + "\n"
+
+        items = ''
+        for i in self.ledger:
+            items += f'{i["description"]:23.23}{i["amount"]:7.2f}' + "\n"
+
+        total = f"Total: {self.get_balance():0.2f}"
+
+        return title + items + total
+
 
 def create_spend_chart(categories):
     pass
-
-# TEST
-test1 = Category('test1')
-test1.deposit(10)
-print(test1.ledger)
-test2 = Category('test2')
-test1.transfer(11, test2)
-print(test1.ledger)
-print(test2.ledger)
