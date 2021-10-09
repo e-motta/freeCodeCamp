@@ -4,16 +4,19 @@ import random
 
 class Hat:
     """A class to represent hats filled with different colored balls."""
-    def __init__(self, **kwargs):
+
+    def __init__(self, **balls):
         """Create a hat with a variable number of differente balls.
-        
+
         Args:
-            kwargs (int): color of ball as arg name and corresponding number (eg 'red=8')
+            balls (int): color of ball as arg name and corresponding number
+                         (eg 'red=8')
         Attributes:
-            contents (list): a list contaning all the inidivual balls, with color name
+            contents (list): a list contaning all the inidivual balls,
+                             with color name (eg '["blue", "blue, "red"]')
         """
         contents = []
-        for color, num in kwargs.items():
+        for color, num in balls.items():
             for i in range(num):
                 contents.append(color)
         self.contents = contents
@@ -29,7 +32,9 @@ class Hat:
         """
         if num_balls >= len(self.contents):
             return self.contents
-        return [self.contents.pop(random.randint(0, len(self.contents)-1)) for i in range(num_balls)]
+        balls_drawn = [self.contents.pop(random.randint(0, len(self.contents)-1))
+                       for i in range(num_balls)]
+        return balls_drawn
 
 
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
@@ -44,14 +49,14 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
         num_experiments (int): The number of experiments to perform.
 
     Returns:
-        float: The probability of the ball being drawn from the hat.
+        float: The probability of the 'expected_balls' being drawn from the 'hat'.
     """
     expected_balls_list = []
 
     for color, num in expected_balls.items():
         for i in range(num):
             expected_balls_list.append(color)
-    
+
     matches = 0
 
     for i in range(num_experiments):
