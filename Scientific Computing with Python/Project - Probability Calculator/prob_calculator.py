@@ -6,7 +6,7 @@ class Hat:
     """A class to represent hats filled with different colored balls."""
 
     def __init__(self, **balls):
-        """Create a hat with a variable number of differente balls.
+        """Create a hat with a variable number of different balls.
 
         Args:
             balls (int): color of ball as arg name and corresponding number
