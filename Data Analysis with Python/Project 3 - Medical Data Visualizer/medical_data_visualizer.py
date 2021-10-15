@@ -2,7 +2,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib.ticker
 
 # Import data
 df = pd.read_csv('medical_examination.csv')
@@ -57,7 +56,6 @@ def draw_heat_map():
     sns.heatmap(data=corr, mask=mask, vmax=0.3, center=0, annot=True, ax=ax,
                 square=True, linewidths=1, cbar_kws={"shrink": .5}, fmt='.1f')
 
-    # Do not modify the next two lines
     fig.savefig('heatmap.png')
     return fig
 
